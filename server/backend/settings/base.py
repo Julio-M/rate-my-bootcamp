@@ -11,12 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
+from decouple import Csv, config
 
 # From env
-MONGO_DETAILS = config("MONGO_DETAILS")
-MONGO_USER = config("MONGO_USER")
-MONGO_PASSWORD = config("MONGO_PASSWORD")
 DJANGO_SECRET_KEY = config("SECRET_KEY")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,8 +28,8 @@ SECRET_KEY = DJANGO_SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1,localhost", cast=Csv())
+INTERNAL_IPS = ["127.0.0.1"]
 
 # Application definition
 
@@ -78,18 +75,6 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-            'ENGINE': 'djongo',
-            'NAME': 'ratemyboot',
-            'ENFORCE_SCHEMA': False,
-            'CLIENT': {
-                'host': MONGO_DETAILS
-            }  
-
-    }
-}
 
 
 # Password validation
