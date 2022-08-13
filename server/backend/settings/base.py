@@ -14,6 +14,10 @@ from pathlib import Path
 from decouple import Csv, config
 
 # From env
+DB_DETAILS = config("DB_DETAILS")
+DB_NAME = config("DB_NAME")
+DB_USER = config("DB_USER")
+DB_PASSWORD = config("DB_PASSWORD")
 DJANGO_SECRET_KEY = config("SECRET_KEY")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

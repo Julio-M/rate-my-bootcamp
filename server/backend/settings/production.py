@@ -2,20 +2,14 @@ from .base import *
 
 DEBUG = False
 
-# From env
-MONGO_DETAILS = config("MONGO_DETAILS")
-MONGO_USER = config("MONGO_USER")
-MONGO_PASSWORD = config("MONGO_PASSWORD")
-
 DATABASES = {
     'default': {
-            'ENGINE': 'djongo',
-            'NAME': 'ratemyboot',
-            'ENFORCE_SCHEMA': False,
-            'CLIENT': {
-                'host': MONGO_DETAILS
-            }  
-
+        'ENGINE': DB_DETAILS,
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
